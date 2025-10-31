@@ -23,7 +23,7 @@ interface Props {
 
 const ShowPdfsDataLearnPage = ({  categoryId }: Props) => {
   const [media, setMedia] = useState<Media[]>([]);
-  const [page, setPage] = useState(1);
+  const [, setPage] = useState(1);
   const [, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
   const [isShowEditPage, setIsShowEditPage] = useState(false);
@@ -34,6 +34,9 @@ const ShowPdfsDataLearnPage = ({  categoryId }: Props) => {
     const token = localStorage.getItem("token");
     return token ? `Bearer ${token}` : null;
   };
+
+useEffect(() => {
+  if (!categoryId) return;
 
   const fetchMedia = async (pageNumber: number = 1) => {
     setLoading(true);
@@ -53,19 +56,15 @@ const ShowPdfsDataLearnPage = ({  categoryId }: Props) => {
       setTotalPages(data.pagination.totalPages || 1);
       setPage(data.pagination.page || 1);
     } catch (err: unknown) {
-      if (err instanceof Error) {
-        console.error(err.message);
-      } else {
-        console.error("Unexpected error:", err);
-      }
+      console.error(err instanceof Error ? err.message : "Unexpected error:", err);
     } finally {
       setLoading(false);
     }
   };
 
-  useEffect(() => {
-    if (categoryId) fetchMedia(1);
-  }, [categoryId]);
+  fetchMedia(1);
+}, [categoryId, baseURL]);
+
 
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this media?")) return;
@@ -77,7 +76,7 @@ const ShowPdfsDataLearnPage = ({  categoryId }: Props) => {
       );
       if (!res.ok) throw new Error("Failed to delete");
       alert("Deleted successfully!");
-      fetchMedia(page); // refresh current page
+      // fetchMedia(page); // refresh current page
     } catch (err: unknown) {
       if (err instanceof Error) {
         alert(err.message);
