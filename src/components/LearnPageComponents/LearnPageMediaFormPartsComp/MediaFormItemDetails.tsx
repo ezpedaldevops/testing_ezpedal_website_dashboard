@@ -34,7 +34,7 @@ const MediaFormItemDetails: React.FC<MediaFormItemDetailsProps> = ({
       <h3 className="text-xl font-outfit text-black">Step 1</h3>
       <h1 className="text-5xl font-outfit text-black">Item Details</h1>
 
-      <div className="flex flex-col gap-5 w-full">
+      <div className="flex flex-col gap-5 w-[60%]">
         <div className="flex gap-x-5 w-full">
           {/* Title */}
           <div className="flex flex-col w-1/2">
@@ -100,7 +100,7 @@ const MediaFormItemDetails: React.FC<MediaFormItemDetailsProps> = ({
               className="px-3 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#223658] focus:outline-none"
               required
             />
-            <p className="text-xs font-thin m-2">
+            <p className="text-[10px] font-poppins font-thin m-2">
               Note: The website will display this date, regardless of upload
               time.
             </p>
@@ -120,7 +120,7 @@ const MediaFormItemDetails: React.FC<MediaFormItemDetailsProps> = ({
               className="px-3 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#223658] focus:outline-none"
               required
             />
-            <p className="text-xs font-thin m-2">
+            <p className="text-[10px] font-poppins font-thin m-2">
               Note: This will appear below the document to indicate the topic
               and help sort the data.
             </p>
@@ -141,7 +141,7 @@ const MediaFormItemDetails: React.FC<MediaFormItemDetailsProps> = ({
             className="px-3 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#223658] focus:outline-none"
             required
           />
-          <p className="text-xs font-thin m-2">
+          <p className="text-[10px] font-poppins font-thin m-2">
             Note: Character limits should be between 300–500.
           </p>
         </div>

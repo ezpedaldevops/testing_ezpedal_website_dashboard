@@ -190,7 +190,7 @@ const Learn = () => {
       <main className="flex flex-col xl:px-32 md:px-16 px-4 w-full py-8">
         <section>
           <div className="flex flex-col justify-center items-center mb-8">
-            <h3 className="text-xl py-2 font-outfit font-bold text-black">
+            <h3 className="text-xl py-2 font-poppins font-medium text-black">
               Learn
             </h3>
             <h1 className="text-6xl  font-outfit text-black">Add File</h1>
@@ -222,8 +222,8 @@ const Learn = () => {
                     className={` p-5 h-96 flex flex-col justify-center items-start transition hover:shadow-lg cursor-pointer
                       ${
                         isAddNew
-                          ? "border-2 border-dashed border-[#9da7b3] bg-transparent"
-                          : "border-2 border-[#9da7b366] shadow-md bg-gradient-to-r from-[#A7AFBC66] to-[#DDE2EB]"
+                          ? " bg-transparent"
+                          : " shadow-md bg-gradient-to-r from-[#A7AFBC66] to-[#DDE2EB]"
                       }`}
                     style={{
                       backgroundImage: "url('/category_card_bg.png')",
@@ -233,13 +233,13 @@ const Learn = () => {
                     }}
                   >
                     <Icon
-                      className={`w-10 h-10 mb-3 text-black ${
-                        isAddNew ? "text-black" : ""
+                      className={`w-10 h-10 mb-3 text-white ${
+                        isAddNew ? "text-white" : ""
                       }`}
                     />
                     <h3
-                      className={`text-4xl font-outfit text-black ${
-                        isAddNew ? "text-black" : ""
+                      className={`text-5xl font-outfit text-white ${
+                        isAddNew ? "text-white" : ""
                       }`}
                     >
                       {card.title}
@@ -247,7 +247,7 @@ const Learn = () => {
                     <div className="flex justify-center items-center mt-5 gap-5">
                       <button
                         onClick={(e) => handleEdit(card, e)}
-                        className={` p-1 px-3 rounded-full text-[8px] text-slate-600   hover:text-red-600 ${
+                        className={` p-1 px-3 rounded-full text-[8px] text-white   hover:text-blue-950 ${
                           isAddNew ? "hidden" : "block"
                         }`}
                       >
@@ -259,7 +259,7 @@ const Learn = () => {
                           setDeleteId(card.id);
                           setIsDeleteModalOpen(true);
                         }}
-                        className={`p-1 px-2 rounded-full text-[8px] text-slate-600  hover:text-red-600 ${
+                        className={`p-1 px-2 rounded-full text-[8px] text-white  hover:text-red-600 ${
                           isAddNew ? "hidden" : "block"
                         }`}
                         title="Make sure all files inside this category is Empty Before Delete "
@@ -291,7 +291,7 @@ const Learn = () => {
                 
                 <button
                   onClick={handleDelete}
-                  className="px-5 py-2 bg-transpernt text-white rounded-lg border-2 border-gray-600 hover:bg-white hover:text-black transition"
+                  className="px-5 py-2 bg-transpernt text-white rounded-lg border-2 border-gray-600 hover:bg-white hover:text-white transition"
                 >
                   Delete Anyway
                 </button>

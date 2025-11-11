@@ -71,7 +71,7 @@ const AddNewCategoryForm = ({ onCategoryAdded }: AddNewCategoryFormProps) => {
           icon: ArrowRight,
         };
 
-        onCategoryAdded?.(newCategory); // ✅ properly typed callback
+        onCategoryAdded?.(newCategory); 
 
         setTitle("");
         setDescription("");
@@ -98,7 +98,7 @@ const AddNewCategoryForm = ({ onCategoryAdded }: AddNewCategoryFormProps) => {
         </div>
 
         <form
-          className=" gap-y-6  flex flex-col justify-center items-start transition "
+          className=" gap-y-6 w-1/2 flex flex-col justify-center items-start transition "
           onSubmit={handleSubmit}
         >
           {/* Title of Category */}
@@ -130,7 +130,7 @@ const AddNewCategoryForm = ({ onCategoryAdded }: AddNewCategoryFormProps) => {
               rows={3}
               required
             />
-            <p className="text-xs font-thin px-5 my-[-5px]">
+            <p className="text-[10px] font-poppins font-thin px-5 my-[-5px]">
               Maximum 300 Character.
             </p>
           </div>
@@ -179,18 +179,18 @@ const AddNewCategoryForm = ({ onCategoryAdded }: AddNewCategoryFormProps) => {
               onChange={(e) => setCoverFile(e.target.files?.[0] || null)}
             />
 
-            <p className="text-xs font-thin px-5 my-[-5px]">
-              Size : W x H = 1440 px X 552 px
+            <p className="text-[10px] font-poppins font-thin px-5 my-[-5px]">
+              Note : Optimal Cover Dimensions for Best Fit : W x H =  1440 px  X 552 px
             </p>
           </div>
 
           {/* Submit Button */}
           <button
             type="submit"
-            className="mt-4 w-1/5 bg-black text-white py-2 px-4 rounded-xl hover:bg-[#1a2947] transition"
+            className="mt-4 w-1/6 bg-[#223658] text-white py-2 px-4 rounded-xl hover:bg-[#1a2947] transition"
             disabled={loading}
           >
-            {loading ? "Creating..." : "Create Category"}
+            {loading ? "Creating..." : "Create"}
           </button>
         </form>
       </div>

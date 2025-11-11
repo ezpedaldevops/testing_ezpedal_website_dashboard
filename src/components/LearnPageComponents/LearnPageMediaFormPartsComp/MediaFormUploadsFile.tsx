@@ -33,7 +33,7 @@ const MediaFormUploadsFile: React.FC<MediaFormUploadsFileProps> = ({
       <h3 className="text-xl font-outfit text-black">Step 3</h3>
       <h1 className="text-5xl font-outfit text-black">Upload File</h1>
 
-      <div className="flex flex-col gap-5 w-full">
+      <div className="flex flex-col gap-5 w-[60%]">
         {/* Cover Image Upload */}
         <div className="flex flex-col w-full gap-y-4">
           <label
@@ -79,7 +79,7 @@ const MediaFormUploadsFile: React.FC<MediaFormUploadsFileProps> = ({
             onChange={handleFileChange}
           />
 
-          <p className="text-xs font-thin px-5 my-[-5px]">
+          <p className="text-[10px] font-poppins font-thin px-5 my-[-5px]">
             Note: Optimal Cover Dimensions — 400×250px
           </p>
         </div>

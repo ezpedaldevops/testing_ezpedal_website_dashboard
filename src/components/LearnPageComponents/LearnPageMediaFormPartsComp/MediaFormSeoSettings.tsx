@@ -37,7 +37,7 @@ const MediaFormSeoSettings: React.FC<MediaFormSeoSettingsProps> = ({
       <h3 className="text-xl font-outfit text-black">Step 2</h3>
       <h1 className="text-5xl font-outfit text-black">SEO Settings</h1>
 
-      <div className="flex flex-col gap-5 w-full">
+      <div className="flex flex-col gap-5 w-[60%]">
         {/* Row 1: SEO Title (auto) + Subject */}
         <div className="flex gap-x-5 w-full">
           <div className="flex flex-col w-1/2">
@@ -120,7 +120,7 @@ const MediaFormSeoSettings: React.FC<MediaFormSeoSettingsProps> = ({
               onChange={handleSeoChange}
               className="px-3 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#223658] focus:outline-none"
             />
-            <p className="text-xs font-thin m-2">
+            <p className="text-[10px] font-poppins font-thin m-2">
               Note: Limit to 5 keywords or fewer.{" "}comma separated
             </p>
           </div>
@@ -153,7 +153,7 @@ const MediaFormSeoSettings: React.FC<MediaFormSeoSettingsProps> = ({
             rows={3}
             className="px-3 py-2 rounded-xl border border-gray-300 bg-gray-100 text-gray-600 cursor-not-allowed"
           />
-          <p className="text-xs font-thin m-2">
+          <p className="text-[10px] font-poppins font-thin m-2">
             Auto-filled from abstract. Character limit: 300–500.
           </p>
         </div>

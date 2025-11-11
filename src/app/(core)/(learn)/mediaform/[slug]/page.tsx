@@ -230,7 +230,7 @@ const MediaFormPage = () => {
 
             {/* ---- Form Step Components ---- */}
             {/* Form wrapper */}
-            <div>
+            <form onSubmit={handleSubmit} className="flex flex-col w-full">
               {step === 1 && (
                 <MediaFormItemDetails
                   formData={formData}
@@ -251,39 +251,44 @@ const MediaFormPage = () => {
                   handleFileTypeChange={handleFileTypeChange}
                 />
               )}
-              {step === 4 && (
-                <MediaFormReviewAllForm
-                  formData={formData}
-                  onSubmit={(e) => handleSubmit(e)}
-                  loading={loading}
-                  error={error}
-                />
-              )}
+              {step === 4 && <MediaFormReviewAllForm formData={formData} />}
 
-              {/* Navigation Buttons */}
-              <div className="flex justify-between mt-10">
+              <div className="mt-10">
                 {step > 1 && (
                   <button
                     type="button"
                     onClick={handlePrev}
-                    className="px-6 py-2 bg-gray-300 text-black rounded-md hover:bg-gray-400"
+                    className="px-6 py-2 me-5 bg-gray-300 text-black rounded-md hover:bg-gray-400"
                   >
                     Previous
                   </button>
                 )}
+
                 {step < totalSteps ? (
                   <button
                     type="button"
                     onClick={handleNext}
-                    className="ml-auto px-6 py-2 bg-[#1a2947] text-white rounded-md hover:bg-[#0d182b]"
+                    className="px-6 py-2 bg-[#1a2947] text-white rounded-md hover:bg-[#0d182b]"
                   >
                     Next
                   </button>
                 ) : (
-                  ""
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="px-6 py-2 bg-[#223658] text-white rounded-xl hover:bg-[#1a2946] transition"
+                  >
+                    {loading ? "Submitting..." : "Submit"}
+                  </button>
                 )}
               </div>
-            </div>
+
+              {error && (
+                <p className="text-red-500 text-sm mt-2 font-poppins">
+                  {error}
+                </p>
+              )}
+            </form>
           </section>
         </main>
       </div>

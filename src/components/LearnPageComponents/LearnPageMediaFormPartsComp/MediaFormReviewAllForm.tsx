@@ -24,16 +24,16 @@ interface MediaFormReviewAllFormProps {
       published_time: string;
     };
   };
-  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  error?: string | null;
-  loading: boolean;
+  // onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  // error?: string | null;
+  // loading: boolean;
 }
 
 const MediaFormReviewAllForm: React.FC<MediaFormReviewAllFormProps> = ({
   formData,
-  onSubmit,
-  loading,
-  error,
+  // onSubmit,
+  // loading,
+  // error,
 }) => {
   const [filePreview, setFilePreview] = useState<string | null>(null);
   const [coverPreview, setCoverPreview] = useState<string | null>(null);
@@ -68,9 +68,9 @@ const MediaFormReviewAllForm: React.FC<MediaFormReviewAllFormProps> = ({
 
   return (
     <>
-      <form
-        onSubmit={onSubmit}
-        className="flex flex-col justify-center items-start gap-5 w-full"
+      <div
+        // onSubmit={onSubmit}
+        className="flex flex-col justify-center items-start gap-5 w-[60%]"
       >
         <h3 className="text-xl font-outfit text-black">Step 4</h3>
         <h1 className="text-5xl font-outfit text-black">Review & Submit</h1>
@@ -112,7 +112,7 @@ const MediaFormReviewAllForm: React.FC<MediaFormReviewAllFormProps> = ({
                 className="px-3 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#223658] focus:outline-none"
                 required
               />
-              <p className="text-xs font-thin m-2">
+              <p className="text-[10px] font-poppins font-thin m-2">
                 Note : The website will show the date you enter here regardless
                 of upload date.
               </p>
@@ -127,7 +127,7 @@ const MediaFormReviewAllForm: React.FC<MediaFormReviewAllFormProps> = ({
                 className="px-3 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#223658] focus:outline-none"
                 required
               />
-              <p className="text-xs font-thin m-2">
+              <p className="text-[10px] font-poppins font-thin m-2">
                 Note : This will appear below the document to indicate the topic
                 and help sort the data
               </p>
@@ -144,7 +144,7 @@ const MediaFormReviewAllForm: React.FC<MediaFormReviewAllFormProps> = ({
               className="px-3 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#223658] focus:outline-none"
               required
             />
-            <p className="text-xs font-thin m-2">
+            <p className="text-[10px] font-poppins font-thin m-2">
               Note : Character Limits is between 300-500 char.
             </p>
           </div>
@@ -221,7 +221,7 @@ const MediaFormReviewAllForm: React.FC<MediaFormReviewAllFormProps> = ({
               className="px-3 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#223658] focus:outline-none"
               required
             />
-            <p className="text-xs font-thin m-2">
+            <p className="text-[10px] font-poppins font-thin m-2">
               Note : Limit the number of key words to less than 5 ideally.
             </p>
           </div>
@@ -257,7 +257,7 @@ const MediaFormReviewAllForm: React.FC<MediaFormReviewAllFormProps> = ({
             rows={3}
             className="px-3 py-2 rounded-xl border border-gray-300 bg-gray-100 text-gray-600 cursor-not-allowed"
           />
-          <p className="text-xs font-thin m-2">
+          <p className="text-[10px] font-poppins font-thin m-2">
             Auto-filled from abstract. Character limit: 300–500.
           </p>
         </div>
@@ -328,7 +328,7 @@ const MediaFormReviewAllForm: React.FC<MediaFormReviewAllFormProps> = ({
             </div>
           )}
         </div>
-        <div className="flex justify-end items-end gap-5 w-full">
+        {/* <div className="flex justify-end items-end gap-5 w-full">
           <button
             type="submit"
             disabled={loading}
@@ -339,8 +339,8 @@ const MediaFormReviewAllForm: React.FC<MediaFormReviewAllFormProps> = ({
         </div>
         {error && (
           <p className="text-red-500 text-sm mt-2 font-poppins">{error}</p>
-        )}
-      </form>
+        )} */}
+      </div>
     </>
   );
 };

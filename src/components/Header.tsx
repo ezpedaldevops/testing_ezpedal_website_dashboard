@@ -6,7 +6,7 @@ export default function Header() {
   const pathname = usePathname();
   return (
     <header className="bg-white shadow">
-      <div className="flex xl:px-32 px-8 w-full py-4 justify-between items-center">
+      <div className="flex xl:px-32 px-8 w-full py-4 font-poppins font-semibold  justify-between items-center">
         <Link href="/careers">
           <Image src={"/logo.svg"} alt="logo" width={100} height={100} />
         </Link>
@@ -16,57 +16,68 @@ export default function Header() {
               <Link href="/careers">
                 <div
                   className={`${
-                    pathname === "/careers" ? "text-orange-600" : ""
+                    pathname === "/careers" ? "text-blue-800" : ""
                   }`}
                 >
-                  CAREERS
+                  Careers
                 </div>
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link href="/partnership">
                 <div
                   className={`${
-                    pathname === "/partnership" ? "text-orange-600" : ""
+                    pathname === "/partnership" ? "text-blue-800" : ""
                   }`}
                 >
-                  PARTNERSHIP
+                  Partnership
                 </div>
               </Link>
-            </li>
-            <li>
+            </li> */}
+            {/* <li>
               <Link href={"/advertise"}>
                 <div
                   className={`${
-                    pathname === "/advertise" ? "text-orange-600" : ""
+                    pathname === "/advertise" ? "text-blue-800" : ""
                   }`}
                 >
-                  ADVERTISE
+                  Advertise
                 </div>
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link href="/learn">
                 <div
-                  className={`${
-                    pathname === "/learn" ? "text-orange-600" : ""
-                  }`}
+                  className={`${pathname === "/learn" ? "text-blue-800" : ""}`}
                 >
-                 <span className="flex justify-center items-center">LEARN</span> 
+                  <span className="flex justify-center items-center">
+                    Learn
+                  </span>
                 </div>
               </Link>
             </li>
             <li>
+              <Link href="/application">
+                <div
+                  className={`${pathname === "/application" ? "text-blue-800" : ""}`}
+                >
+                  <span className="flex justify-center items-center">
+                    {"Application's"}
+                  </span>
+                </div>
+              </Link>
+            </li>
+            {/* <li>
               <Link href="/images">
                 <div
                   className={`${
-                    pathname === "/images" ? "text-orange-600" : ""
+                    pathname === "/images" ? "text-blue-800" : ""
                   }`}
                 >
                   CHANGE IMAGES
                 </div>
               </Link>
-            </li>
+            </li> */}
           </ul>
         </nav>
       </div>
