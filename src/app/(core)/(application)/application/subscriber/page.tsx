@@ -41,7 +41,7 @@ const Page = () => {
 
   useEffect(() => {
     fetchApplications();
-  }, [token]);
+  }, [token,fetchApplications]);
 
   const handleDelete = async (applicationId: string) => {
     if (!token) return;

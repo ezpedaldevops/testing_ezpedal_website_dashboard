@@ -57,6 +57,17 @@ export default function Header() {
               </Link>
             </li>
             <li>
+              <Link href="/bulkemail">
+                <div
+                  className={`${
+                    pathname === "/bulkemail" ? "text-blue-800" : ""
+                  }`}
+                >
+                  Subscribers Email
+                </div>
+              </Link>
+            </li>
+            <li>
               <Link href="/application">
                 <div
                   className={`${pathname === "/application" ? "text-blue-800" : ""}`}
