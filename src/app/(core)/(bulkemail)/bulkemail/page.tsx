@@ -57,7 +57,7 @@ const Page = () => {
 
   useEffect(() => {
     fetchSubscribers();
-  }, [fetchSubscribers]);
+  }, []);
 
   async function fetchSubscribers() {
     const token = getToken();
@@ -79,6 +79,26 @@ const Page = () => {
       setSubscribers(res.data.data); // Adjust if response structure differs
     } catch (err) {
       console.error("Error fetching subscribers:", err);
+    }
+  }
+
+  async function deleteSubscriber(id: string) {
+    const token = getToken();
+    if (!token) return alert("Not authenticated");
+
+    try {
+      await axios.delete(
+        `${baseURL}/api/v1/email-notification/unsubscribe/${id}`,
+        {
+          headers: { Authorization: token },
+        }
+      );
+
+      // Remove from UI without full refresh
+      setSubscribers((prev) => prev.filter((s) => s._id !== id));
+    } catch (err) {
+      console.error("Delete failed:", err);
+      alert("Failed to delete subscriber.");
     }
   }
 
@@ -133,7 +153,9 @@ const Page = () => {
                           </td>
                           <td className="px-3 py-4 bg-slate-200 rounded-lg border">
                             <div className="flex justify-center gap-3">
-                              <button>
+                              <button
+                                onClick={() => deleteSubscriber(item._id)}
+                              >
                                 <Trash2 className="cursor-pointer hover:text-red-600" />
                               </button>
                             </div>
@@ -142,7 +164,7 @@ const Page = () => {
                       ))
                     ) : (
                       <tr>
-                        <td  className="py-4 text-gray-500">
+                        <td className="py-4 text-gray-500">
                           No Subscribers Found
                         </td>
                       </tr>
@@ -169,7 +191,6 @@ const Page = () => {
                     value={title}
                     onChange={(e) => setTitle(e.target.value)}
                     placeholder="eZpedal Rideshare : {{ Enter your email subject }}"
-
                     className="px-3 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#223658] focus:outline-none"
                     required
                   />

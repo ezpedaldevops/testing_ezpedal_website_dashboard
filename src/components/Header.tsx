@@ -13,16 +13,17 @@ export default function Header() {
         <nav>
           <ul className="flex space-x-4">
             <li>
-              <Link href="/careers">
+              <Link href="/bulkemail">
                 <div
                   className={`${
-                    pathname === "/careers" ? "text-blue-800" : ""
+                    pathname === "/bulkemail" ? "text-blue-800" : ""
                   }`}
                 >
-                  Careers
+                  Subscribers Email
                 </div>
               </Link>
             </li>
+           
             {/* <li>
               <Link href="/partnership">
                 <div
@@ -57,13 +58,24 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link href="/bulkemail">
+              <Link href="/gallery">
+                <div
+                  className={`${pathname === "/gallery" ? "text-blue-800" : ""}`}
+                >
+                  <span className="flex justify-center items-center">
+                    Gallery
+                  </span>
+                </div>
+              </Link>
+            </li>
+             <li>
+              <Link href="/careers">
                 <div
                   className={`${
-                    pathname === "/bulkemail" ? "text-blue-800" : ""
+                    pathname === "/careers" ? "text-blue-800" : ""
                   }`}
                 >
-                  Subscribers Email
+                  Careers
                 </div>
               </Link>
             </li>
