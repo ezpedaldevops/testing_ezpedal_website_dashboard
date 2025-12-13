@@ -324,11 +324,15 @@ const Page = () => {
 
                   {/* PREVIEW */}
                   {file && (
-                    <Image
-                      src={URL.createObjectURL(file)}
-                      alt="image"
-                      className="w-full h-auto rounded-lg mb-4 border"
-                    />
+                    <div className="relative w-full h-64 mb-4">
+    <Image
+      src={URL.createObjectURL(file)}
+      alt="image"
+      fill
+      className="object-contain rounded-lg border"
+      unoptimized
+    />
+  </div>
                   )}
 
                   {/* ALT TEXT */}

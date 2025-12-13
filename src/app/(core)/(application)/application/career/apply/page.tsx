@@ -278,6 +278,14 @@ const DetailRow = ({ label, value, multiline = false }: DetailRowProps) => (
                   label="Phone"
                   value={selectedApplication.phone_number}
                 />
+                 <DetailRow
+                  label="Linkdin"
+                  value={selectedApplication.linkdin}
+                />
+                 <DetailRow
+                  label="Portfolio"
+                  value={selectedApplication.portfolio_url}
+                />
 
                 <DetailRow
                   label="Position"
