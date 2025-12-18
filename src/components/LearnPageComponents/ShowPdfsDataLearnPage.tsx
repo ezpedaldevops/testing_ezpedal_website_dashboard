@@ -23,7 +23,7 @@ interface Props {
 
 const ShowPdfsDataLearnPage = ({  categoryId }: Props) => {
   const [media, setMedia] = useState<Media[]>([]);
-  const [page, setPage] = useState(1);
+  const [, setPage] = useState(1);
   const [, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
   const [isShowEditPage, setIsShowEditPage] = useState(false);
@@ -35,14 +35,14 @@ const ShowPdfsDataLearnPage = ({  categoryId }: Props) => {
     return token ? `Bearer ${token}` : null;
   };
 
-  const fetchMedia = async (pageNumber: number = 1) => {
+  const fetchMedia = async () => {
     setLoading(true);
     try {
       const token = getToken();
       if (!token) throw new Error("Not authenticated");
 
       const res = await fetch(
-        `${baseURL}/api/v2/learn-media/get-all-category-media/${categoryId}?page=${pageNumber}&limit=6`,
+        `${baseURL}/api/v2/learn-media/get-all-category-media/${categoryId}`,
         { headers: { Authorization: token } }
       );
 
@@ -64,7 +64,7 @@ const ShowPdfsDataLearnPage = ({  categoryId }: Props) => {
   };
 
   useEffect(() => {
-    if (categoryId) fetchMedia(1);
+    if (categoryId) fetchMedia();
   }, [categoryId]);
 
   const handleDelete = async (id: string) => {
@@ -77,7 +77,7 @@ const ShowPdfsDataLearnPage = ({  categoryId }: Props) => {
       );
       if (!res.ok) throw new Error("Failed to delete");
       alert("Deleted successfully!");
-      fetchMedia(page); // refresh current page
+      fetchMedia(); // refresh current page
     } catch (err: unknown) {
       if (err instanceof Error) {
         alert(err.message);
