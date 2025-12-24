@@ -59,6 +59,13 @@ const Page = () => {
                   {"Subscribe - Email List"}
                 </h3>
               </Link>
+
+              {/* Contact Page Applications */}
+              <Link href={`/application/buissness`} className="p-5 h-64 sm:h-72 lg:h-80 flex flex-col justify-center items-center bg-slate-400 cursor-pointer hover:shadow-lg transition border-2 border-slate-400">
+                <h3 className="text-2xl font-semibold font-outfit text-white">
+                  {"Buissness Request's - Email List"}
+                </h3>
+              </Link>
             </div>
           </section>
         </main>

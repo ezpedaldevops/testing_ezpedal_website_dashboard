@@ -137,6 +137,28 @@ const Page = () => {
     }
   }
 
+  async function handleDeleteImage(imageId: string) {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this image? This action cannot be undone."
+    );
+
+    if (!confirmDelete) return;
+
+    try {
+      await axios.delete(`${baseURL}/api/v2/gallery-image/delete/${imageId}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+
+      // Optimistic UI update (best UX)
+      setImages((prev) => prev.filter((img) => img._id !== imageId));
+    } catch (error) {
+      console.error("Delete failed:", error);
+      alert("Failed to delete image. Try again.");
+    }
+  }
+
   return (
     <>
       <div className="min-h-screen bg-gray-100">
@@ -209,10 +231,10 @@ const Page = () => {
 
             <table className="min-w-full text-sm border-separate border-spacing-3 font-poppins text-center">
               <thead>
-                <tr>
+                <tr><th className="px-3 py-4">Order</th>
                   <th className="px-3 py-4">Name</th>
                   <th className="px-3 py-4">Slug</th>
-                  <th className="px-3 py-4">Order</th>
+                  
                   <th className="px-3 py-4">Images</th>
                   <th className="px-3 py-4">Upload</th>
                 </tr>
@@ -221,16 +243,16 @@ const Page = () => {
               <tbody>
                 {sections.length ? (
                   sections.map((section) => (
-                    <tr key={section._id}>
+                    <tr key={section._id}><td className="px-3 py-3 bg-slate-200 rounded-lg border">
+                        {section.order}
+                      </td>
                       <td className="px-3 py-3 bg-slate-200 rounded-lg border">
                         {section.section_name}
                       </td>
                       <td className="px-3 py-3 bg-slate-200 rounded-lg border">
                         {section.section_name_slug}
                       </td>
-                      <td className="px-3 py-3 bg-slate-200 rounded-lg border">
-                        {section.order}
-                      </td>
+                      
                       <td className="px-3 py-3 bg-slate-200 rounded-lg border">
                         <button
                           className="flex items-center gap-1 text-blue-600 hover:text-blue-800"
@@ -278,12 +300,31 @@ const Page = () => {
                 {images.length ? (
                   <div className="grid grid-cols-2 gap-3">
                     {images.map((img) => (
-                      <div key={img._id} className="border p-2 ">
+                      <div
+                        key={img._id}
+                        className="border p-2 relative group rounded-lg overflow-hidden"
+                      >
                         <Image
                           src={img.image}
                           alt={img.alt}
-                          className=" h-full w-full"
+                          width={500}
+                          height={500}
+                          className="h-full w-full object-cover"
                         />
+
+                        {/* Delete button */}
+                        <button
+                          onClick={() => handleDeleteImage(img._id)}
+                          className="
+      absolute top-5 right-5
+      bg-red-600 text-white
+      px-3 py-1 rounded-md text-sm
+      opacity-0 group-hover:opacity-100
+      transition font-poppins
+    "
+                        >
+                          Delete
+                        </button>
                       </div>
                     ))}
                   </div>
@@ -325,14 +366,14 @@ const Page = () => {
                   {/* PREVIEW */}
                   {file && (
                     <div className="relative w-full h-64 mb-4">
-    <Image
-      src={URL.createObjectURL(file)}
-      alt="image"
-      fill
-      className="object-contain rounded-lg border"
-      unoptimized
-    />
-  </div>
+                      <Image
+                        src={URL.createObjectURL(file)}
+                        alt="image"
+                        fill
+                        className="object-contain rounded-lg border"
+                        unoptimized
+                      />
+                    </div>
                   )}
 
                   {/* ALT TEXT */}

@@ -201,7 +201,7 @@ const ShowPdfsDataLearnPage = ({  categoryId }: Props) => {
                           tagStr.split(",").map((tag) => (
                             <span
                               key={tag}
-                              className="text-black font-medium px-3 py-1 rounded-full text-lg font-poppins"
+                              className="text-black font-medium  py-1 rounded-full text-lg font-poppins"
                             >
                               {tag.trim()}
                             </span>
@@ -229,6 +229,7 @@ const ShowPdfsDataLearnPage = ({  categoryId }: Props) => {
                       alt={m.title}
                       height={250}
                       width={400}
+                      unoptimized
                       className="w-full object-cover cursor-pointer"
                       onClick={() => window.open(m.fileUrl, "_blank")}
                     />

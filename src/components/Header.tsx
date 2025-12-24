@@ -11,7 +11,18 @@ export default function Header() {
           <Image src={"/logo.svg"} alt="logo" width={100} height={100} />
         </Link>
         <nav>
-          <ul className="flex space-x-4">
+          <ul className="flex space-x-8">
+            <li>
+              <Link href="/analytics">
+                <div
+                  className={`${
+                    pathname === "/analytics" ? "text-blue-800" : ""
+                  }`}
+                >
+                  Analytics
+                </div>
+              </Link>
+            </li>
             <li>
               <Link href="/bulkemail">
                 <div
