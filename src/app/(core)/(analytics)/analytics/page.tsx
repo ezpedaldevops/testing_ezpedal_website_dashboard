@@ -24,7 +24,7 @@ const Page = () => {
         <section className="text-center">
           <h3 className="text-lg font-poppins font-medium">Learn</h3>
           <h1 className="text-5xl font-outfit">Analytics</h1>
-          <p className="mt-2 text-lg text-gray-600">
+          <p className="mt-2 text-lg text-black">
             Track top media, view performance trends, and monitor overall
             analytics.
           </p>

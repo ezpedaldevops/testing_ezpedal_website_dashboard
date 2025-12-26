@@ -159,6 +159,47 @@ const Page = () => {
     }
   }
 
+  async function handleDeleteSection(sectionId: string, sectionName: string) {
+    const confirmDelete = window.confirm(
+      `Delete section "${sectionName}"?\n\nThis will fail if images exist.`
+    );
+
+    if (!confirmDelete) return;
+
+    try {
+      await axios.delete(
+        `${baseURL}/api/v2/gallery-section/delete/${sectionId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      // ✅ Update UI only on success
+      setSections((prev) => prev.filter((s) => s._id !== sectionId));
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const status = error.response?.status;
+
+        if (status === 409) {
+          alert(
+            "This section cannot be deleted because it contains images.\nPlease delete images first."
+          );
+          return;
+        }
+
+        if (status === 404) {
+          alert("Section not found or already deleted.");
+          return;
+        }
+      }
+
+      console.error("Delete section failed:", error);
+      alert("Failed to delete section. Try again.");
+    }
+  }
+
   return (
     <>
       <div className="min-h-screen bg-gray-100">
@@ -231,28 +272,33 @@ const Page = () => {
 
             <table className="min-w-full text-sm border-separate border-spacing-3 font-poppins text-center">
               <thead>
-                <tr><th className="px-3 py-4">Order</th>
+                <tr>
+                  <th className="px-3 py-4">Order</th>
                   <th className="px-3 py-4">Name</th>
                   <th className="px-3 py-4">Slug</th>
-                  
+
                   <th className="px-3 py-4">Images</th>
                   <th className="px-3 py-4">Upload</th>
+                  <th className="px-3 py-4">Delete</th>
                 </tr>
               </thead>
 
               <tbody>
                 {sections.length ? (
                   sections.map((section) => (
-                    <tr key={section._id}><td className="px-3 py-3 bg-slate-200 rounded-lg border">
+                    <tr key={section._id}>
+                      <td className="px-3 py-3 bg-slate-200 rounded-lg border">
                         {section.order}
                       </td>
+
                       <td className="px-3 py-3 bg-slate-200 rounded-lg border">
                         {section.section_name}
                       </td>
+
                       <td className="px-3 py-3 bg-slate-200 rounded-lg border">
                         {section.section_name_slug}
                       </td>
-                      
+
                       <td className="px-3 py-3 bg-slate-200 rounded-lg border">
                         <button
                           className="flex items-center gap-1 text-blue-600 hover:text-blue-800"
@@ -264,6 +310,7 @@ const Page = () => {
                           <Eye size={16} /> View
                         </button>
                       </td>
+
                       <td className="px-3 py-3 bg-slate-200 rounded-lg border">
                         <button
                           className="flex items-center gap-1 text-blue-600 hover:text-blue-800"
@@ -274,6 +321,20 @@ const Page = () => {
                           }}
                         >
                           <Upload size={16} /> Upload
+                        </button>
+                      </td>
+
+                      <td className="px-3 py-3 bg-slate-200 rounded-lg border">
+                        <button
+                          className="text-red-600 hover:text-red-800"
+                          onClick={() =>
+                            handleDeleteSection(
+                              section._id,
+                              section.section_name
+                            )
+                          }
+                        >
+                          Delete
                         </button>
                       </td>
                     </tr>
