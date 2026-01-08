@@ -136,7 +136,7 @@ export default function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-black ">
       <div className="max-w-md p-8 bg-gray-800 rounded">
-        <h1 className="text-3xl text-center mb-6">Dashboard Login</h1>
+        <h1 className="text-3xl text-center mb-6 text-cyan-400">Dashboard Login</h1>
         <form onSubmit={handleLogin} className="space-y-6">
           <input name="username" type="email" placeholder="Email" required className="w-full p-2" />
           <input name="password" type="password" placeholder="Password" required className="w-full p-2" />

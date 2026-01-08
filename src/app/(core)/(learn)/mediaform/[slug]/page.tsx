@@ -51,6 +51,95 @@ const MediaFormPage = () => {
     },
   });
 
+  // const validateStep = () => {
+  //   if (step === 1) {
+  //     const { title, abstract, author, dateOfPublish, tags } = formData;
+  //     return title && abstract && author && dateOfPublish && tags;
+  //   }
+
+  //   if (step === 2) {
+  //     const { seo } = formData;
+
+  //     // Ensure all fields are present & non-empty strings
+  //     const requiredFields = [
+  //       seo.subject,
+  //       seo.lang,
+  //     ];
+
+  //     const allFieldsValid = requiredFields.every(
+  //       (f) => typeof f === "string" && f.trim().length > 0
+  //     );
+
+  //     const keywordsValid =
+  //       Array.isArray(seo.keywords) &&
+  //       seo.keywords.length > 0 &&
+  //       seo.keywords.every((k) => typeof k === "string" && k.trim().length > 0);
+
+  //     return allFieldsValid && keywordsValid;
+  //   }
+
+  //   if (step === 3) {
+  //     const { file, coverImage, fileType, fileUrl } = formData;
+
+  //     const coverValid = coverImage instanceof File;
+
+  //     if (fileType === "link") {
+  //       const urlValid =
+  //         typeof fileUrl === "string" &&
+  //         fileUrl.trim().length > 0 &&
+  //         /^https?:\/\//.test(fileUrl);
+  //       return urlValid && coverValid;
+  //     }
+
+  //     const fileValid = file instanceof File;
+  //     return fileValid && coverValid;
+  //   }
+
+  //   return true;
+
+   
+     
+  // };
+
+const validateStep = (stepToValidate: number = step): boolean => {
+  if (stepToValidate === 1) {
+    const { title, abstract, author, dateOfPublish, tags } = formData;
+    return [title, abstract, author, dateOfPublish, tags]
+      .every(v => typeof v === "string" && v.trim().length > 0);
+  }
+
+  if (stepToValidate === 2) {
+    const { seo } = formData;
+    const requiredFields = [seo.subject, seo.lang];
+    const allFieldsValid = requiredFields.every(v => v.trim().length > 0);
+    const keywordsValid = seo.keywords.length > 0;
+    return allFieldsValid && keywordsValid;
+  }
+
+  if (stepToValidate === 3) {
+    const { file, coverImage, fileType, fileUrl } = formData;
+    const coverValid = coverImage instanceof File;
+
+    if (fileType === "link") {
+      const urlValid = /^https?:\/\//.test(fileUrl.trim());
+      return urlValid && coverValid;
+    }
+
+    return file instanceof File && coverValid;
+  }
+
+  if (stepToValidate === 4) {
+    return (
+      validateStep(1) &&
+      validateStep(2) &&
+      validateStep(3)
+    );
+  }
+
+  return false;
+};
+
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -265,17 +354,29 @@ const MediaFormPage = () => {
                 )}
 
                 {step < totalSteps ? (
+                  // <button
+                  //   type="button"
+                  //   onClick={handleNext}
+                  //   className="px-6 py-2 bg-[#1a2947] text-white rounded-md hover:bg-[#0d182b]"
+                  // >
+                  //   Next
+                  // </button>
                   <button
                     type="button"
-                    onClick={handleNext}
-                    className="px-6 py-2 bg-[#1a2947] text-white rounded-md hover:bg-[#0d182b]"
+                    onClick={validateStep() ? handleNext : () => {}}
+                    disabled={!validateStep()}
+                    className={`px-6 py-2 rounded-md ${
+                      validateStep()
+                        ? "bg-[#1a2947] text-white hover:bg-[#0d182b]"
+                        : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                    }`}
                   >
                     Next
                   </button>
                 ) : (
                   <button
                     type="submit"
-                    disabled={loading}
+                    disabled={!validateStep(4) || loading}
                     className="px-6 py-2 bg-[#223658] text-white rounded-xl hover:bg-[#1a2946] transition"
                   >
                     {loading ? "Submitting..." : "Submit"}

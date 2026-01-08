@@ -23,10 +23,7 @@ const MediaFormUploadsFile: React.FC<MediaFormUploadsFileProps> = ({
 }) => {
   // Generate temporary preview URLs
 
-
-
   // Helper to render file preview based on type
-
 
   return (
     <div className="flex flex-col justify-center items-start gap-5">
@@ -177,11 +174,29 @@ const MediaFormUploadsFile: React.FC<MediaFormUploadsFileProps> = ({
               )}
             </label>
 
+            {/* <input
+              id="file"
+              name="file"
+              type="file"
+              className="hidden"
+              onChange={handleFileChange}
+            /> */}
             <input
               id="file"
               name="file"
               type="file"
               className="hidden"
+              accept={
+                formData.fileType === "pdf"
+                  ? "application/pdf"
+                  : formData.fileType === "doc"
+                  ? ".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                  : formData.fileType === "mp3"
+                  ? "audio/mpeg"
+                  : formData.fileType === "mp4"
+                  ? "video/mp4"
+                  : undefined
+              }
               onChange={handleFileChange}
             />
           </div>
