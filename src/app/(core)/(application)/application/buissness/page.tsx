@@ -47,7 +47,7 @@ const Page = () => {
     if (!token) return;
 
     try {
-      await axios.delete(`${baseUrl}/api/v1/email-notification/delete/${applicationId}`, {
+      await axios.delete(`${baseUrl}/api/v1/email-notification/buisness/delete/${applicationId}`, {
         headers: { Authorization: token },
       });
 
