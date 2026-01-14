@@ -27,7 +27,7 @@ const Page = () => {
   const baseURL = process.env.NEXT_PUBLIC_BACKEND_URL;
   const [sections, setSections] = useState<Section[]>([]);
   const [sectionName, setSectionName] = useState("");
-  const [order, setOrder] = useState<number>(1);
+  // const [order, setOrder] = useState<number>(1);
 
   const [images, setImages] = useState<GalleryImage[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
@@ -82,11 +82,11 @@ const Page = () => {
     try {
       await axios.post(`${baseURL}/api/v2/gallery-section/create`, {
         section_name: sectionName,
-        order,
+        // order,
       });
 
       setSectionName("");
-      setOrder(1);
+      // setOrder(1);
       fetchSections();
       alert("Section created!");
     } catch (err) {
@@ -243,7 +243,7 @@ const Page = () => {
                 />
               </div>
 
-              <div className="flex flex-col">
+              {/* <div className="flex flex-col">
                 <label className="text-sm font-semibold mb-1">
                   Section Display Order
                 </label>
@@ -255,7 +255,7 @@ const Page = () => {
                   className="px-3 py-2 border rounded-lg"
                   required
                 />
-              </div>
+              </div> */}
             </div>
 
             <button
@@ -273,7 +273,6 @@ const Page = () => {
             <table className="min-w-full text-sm border-separate border-spacing-3 font-poppins text-center">
               <thead>
                 <tr>
-                  <th className="px-3 py-4">Order</th>
                   <th className="px-3 py-4">Name</th>
                   <th className="px-3 py-4">Slug</th>
 
