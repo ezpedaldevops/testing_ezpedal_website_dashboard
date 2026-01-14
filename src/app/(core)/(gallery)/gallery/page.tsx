@@ -286,9 +286,7 @@ const Page = () => {
                 {sections.length ? (
                   sections.map((section) => (
                     <tr key={section._id}>
-                      <td className="px-3 py-3 bg-slate-200 rounded-lg border">
-                        {section.order}
-                      </td>
+                      
 
                       <td className="px-3 py-3 bg-slate-200 rounded-lg border">
                         {section.section_name}
