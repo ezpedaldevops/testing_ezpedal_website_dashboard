@@ -205,7 +205,7 @@ const UpdateMediaLearnPage = ({ selectedMedia, closeModal }: Props) => {
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="border px-3 py-2 rounded-2xl w-full"
+              className="border px-3 py-2 rounded-2xl w-full text-black"
               required
             />
           </div>
@@ -216,7 +216,7 @@ const UpdateMediaLearnPage = ({ selectedMedia, closeModal }: Props) => {
               type="text"
               value={authorOfDocument}
               onChange={(e) => setAuthorOfDocument(e.target.value)}
-              className="border px-3 py-2 rounded-2xl w-full"
+              className="border px-3 py-2 rounded-2xl w-full text-black"
             />
           </div>
 
@@ -226,7 +226,7 @@ const UpdateMediaLearnPage = ({ selectedMedia, closeModal }: Props) => {
               type="date"
               value={dateOfPublish}
               onChange={(e) => setDateOfPublish(e.target.value)}
-              className="border px-3 py-2 rounded-2xl w-full"
+              className="border px-3 py-2 rounded-2xl w-full text-black"
             />
           </div>
 
@@ -236,7 +236,7 @@ const UpdateMediaLearnPage = ({ selectedMedia, closeModal }: Props) => {
               type="text"
               value={tags}
               onChange={(e) => setTags(e.target.value)}
-              className="border px-3 py-2 rounded-2xl w-full"
+              className="border px-3 py-2 rounded-2xl w-full text-black"
               placeholder="e.g., rideshare, bicycle, india"
             />
           </div>
@@ -247,7 +247,7 @@ const UpdateMediaLearnPage = ({ selectedMedia, closeModal }: Props) => {
               value={abstract}
               rows={3}
               onChange={(e) => setAbstract(e.target.value)}
-              className="border px-3 py-2 rounded-2xl w-full"
+              className="border px-3 py-2 rounded-2xl w-full text-black"
               required
             />
           </div>
@@ -258,7 +258,7 @@ const UpdateMediaLearnPage = ({ selectedMedia, closeModal }: Props) => {
             <select
               value={fileType}
               onChange={(e) => setFileType(e.target.value)}
-              className="border px-3 py-2 rounded-2xl w-full"
+              className="border px-3 py-2 rounded-2xl w-full text-black"
               required
             >
               {fileTypeOptions.map((opt) => (
@@ -277,7 +277,7 @@ const UpdateMediaLearnPage = ({ selectedMedia, closeModal }: Props) => {
                 type="url"
                 value={fileUrl}
                 onChange={(e) => setFileUrl(e.target.value)}
-                className="border px-3 py-2 rounded-2xl w-full text-white"
+                className="border px-3 py-2 rounded-2xl w-full text-black"
                 placeholder="https://example.com"
                 required
               />
